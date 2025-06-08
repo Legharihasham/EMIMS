@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMIMS - UI Wireframes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.1em;
+        }
+
+        .wireframe-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .wireframe-btn {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .wireframe-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .wireframe-btn.active {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .wireframe {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .wireframe.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header Bar */
+        .app-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .app-header .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Sidebar */
+        .app-body {
+            display: flex;
+            min-height: 600px;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #2c3e50;
+            color: white;
+            padding: 20px 0;
+        }
+
+        .sidebar-item {
+            padding: 15px 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .sidebar-item:hover, .sidebar-item.active {
+            background: rgba(255, 255, 255, 0.1);
+            border-left-color: #3498db;
+        }
+
+        .sidebar-item i {
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 25px;
+            background: #f8f9fa;
+        }
+
+        /* Dashboard Cards */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card h3 {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .stat-card .value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .change {
+            font-size: 0.9em;
+            color: #27ae60;
+        }
+
+        /* Tables */
+        .table-container {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .table-header {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: between;
+            align-items: center;
+        }
+
+        .table-header h3 {
+            color: #2c3e50;
+            margin-bottom: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #27ae60, #229954);
+            color: white;
+        }
+
+        .btn-warning {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Status Badges */
+        .badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-success { background: #d4edda; color: #155724; }
+        .badge-warning { background: #fff3cd; color: #856404; }
+        .badge-info { background: #d1ecf1; color: #0c5460; }
+        .badge-danger { background: #f8d7da; color: #721c24; }
+
+        /* Medicine Request Cart */
+        .medicine-cart {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f1f1;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .app-body {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                padding: 10px 0;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .wireframe-selector {
+                justify-content: center;
+            }
+            
+            .wireframe-btn {
+                font-size: 0.9em;
+                padding: 10px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏥 EMIMS UI Wireframes</h1>
+            <p>Employee Medicine Inventory Management System - Interactive Mockups</p>
+        </div>
+
+        <div class="wireframe-selector">
+            <button class="wireframe-btn active" onclick="showWireframe('dashboard')">Admin Dashboard</button>
+            <button class="wireframe-btn" onclick="showWireframe('employee')">Employee Portal</button>
+            <button class="wireframe-btn" onclick="showWireframe('inventory')">Inventory Management</button>
+            <button class="wireframe-btn" onclick="showWireframe('reports')">Reports & Analytics</button>
+            <button class="wireframe-btn" onclick="showWireframe('requests')">Medicine Requests</button>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div id="dashboard" class="wireframe active">
+            <div class="app-header">
+                <div class="logo">🏥 EMIMS</div>
+                <div class="user-info">
+                    <span>🔔</span>
+                    <div class="user-avatar">DA</div>
+                    <span>Dr. Ahmed</span>
+                </div>
+            </div>
+            <div class="app-body">
+                <div class="sidebar">
+                    <div class="sidebar-item active">
+                        <i>📊</i> Dashboard
+                    </div>
+                    <div class="sidebar-item">
+                        <i>👥</i> Employees
+                    </div>
+                    <div class="sidebar-item">
+                        <i>💊</i> Medicine Catalog
+                    </div>
+                    <div class="sidebar-item">
+                        <i>📦</i> Inventory
+                    </div>
+                    <div class="sidebar-item">
+                        <i>📋</i> Requests
+                    </div>
+                    <div class="sidebar-item">
+                        <i>📈</i> Reports
+                    </div>
+                    <div class="sidebar-item">
+                        <i>⚙️</i> Settings
+                    </div>
+                </div>
+                <div class="main-content">
+                    <h2 style="margin-bottom: 25px; color: #2c3e50;">Dashboard Overview</h2>
+                    
+                    <div class="dashboard-grid">
+                        <div class="stat-card">
+                            <h3>Total Employees</h3>
+                            <div class="value">120</div>
+                            <div class="change">+5 this month</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Active Requests</h3>
+                            <div class="value">18</div>
+                            <div class="change">-3 from yesterday</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Total Medicines</h3>
+                            <div class="value">450</div>
+                            <div class="change">+12 new items</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Low Stock Items</h3>
+                            <div class="value">7</div>
+                            <div class="change">⚠️ Needs attention</div>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h3>Recent Medicine Requests</h3>
+                            <button class="btn btn-primary">View All</button>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Employee ID</th>
+                                    <th>Employee Name</th>
+                                    <th>Medicine</th>
+                                    <th>Quantity</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>EMP001</td>
+                                    <td>John Smith</td>
+                                    <td>Paracetamol 500mg</td>
+                                    <td>10 tablets</td>
+                                    <td><span class="badge badge-warning">Pending</span></td>
+                                    <td>
+                                        <button class="btn btn-success" style="padding: 5px 10px; font-size: 0.8em;">Approve</button>
+                                        <button class="btn btn-danger" style="padding: 5px 10px; font-size: 0.8em;">Reject</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>EMP002</td>
+                                    <td>Sarah Johnson</td>
+                                    <td>Vitamin D3</td>
+                                    <td>30 tablets</td>
+                                    <td><span class="badge badge-success">Approved</span></td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 5px 10px; font-size: 0.8em;">Dispense</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>EMP003</td>
+                                    <td>Michael Brown</td>
+                                    <td>Cough Syrup</td>
+                                    <td>1 bottle</td>
+                                    <td><span class="badge badge-info">Dispensed</span></td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 5px 10px; font-size: 0.8em;">View</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Employee Portal -->
+        <div id="employee" class="wireframe">
+            <div class="app-header">
+                <div class="logo">🏥 EMIMS</div>
+                <div class="user-info">
+                    <span>🔔</span>
+                    <div class="user-avatar">JS</div>
+                    <span>John Smith (EMP001)</span>
+                </div>
+            </div>
+            <div class="app-body">
+                <div class="sidebar">
+                    <div class="sidebar-item active">
+                        <i>🏠</i> My Dashboard
+                    </div>
+                    <div class="sidebar-item">
+                        <i>💊</i> Request Medicine
+                    </div>
+                    <div class="sidebar-item">
+                        <i>📋</i> My Requests
+                    </div>
+                    <div class="sidebar-item">
+                        <i>📊</i> My Allocation
+                    </div>
+                    <div class="sidebar-item">
+                        <i>📜</i> History
+                    </div>
+                    <div class="sidebar-item">
+                        <i>👤</i> Profile
+                    </div>
+                </div>
+                <div class="main-content">
+                    <h2 style="margin-bottom: 25px; color: #2c3e50;">My Medicine Dashboard</h2>
+                    
+                    <div class="dashboard-grid">
+                        <div class="stat-card">
+                            <h3>Annual Allocation</h3>
+                            <div class="value">$500</div>
+                            <div class="change">Remaining: $320</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>This Month Used</h3>
+                            <div class="value">$45</div>
+                            <div class="change">3 medicines</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Pending Requests</h3>
+                            <div class="value">2</div>
+                            <div class="change">Awaiting approval</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Family Members</h3>
+                            <div class="value">3</div>
+                            <div class="change">Spouse + 2 Children</div>
+                        </div>
+                    </div>
+
+                    <div class="medicine-cart">
+                        <h3 style="margin-bottom: 20px; color: #2c3e50;">Quick Medicine Request</h3>
+                        <div class="form-group">
+                            <label>Search Medicine</label>
+                            <input type="text" class="form-control" placeholder="Type medicine name...">
+                        </div>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                            <div style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; text-align: center;">
+                                <h4>Paracetamol 500mg</h4>
+                                <p style="color: #7f8c8d; font-size: 0.9em;">Pain Relief</p>
+                                <p style="font-weight: bold; color: #27ae60;">$0.50 per tablet</p>
+                                <button class="btn btn-primary">Add to Cart</button>
+                            </div>
+                            <div style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; text-align: center;">
+                                <h4>Vitamin C</h4>
+                                <p style="color: #7f8c8d; font-size: 0.9em;">Immunity Booster</p>
+                                <p style="font-weight: bold; color: #27ae60;">$0.25 per tablet</p>
+                                <button class="btn btn-primary">Add to Cart</button>
+                            </div>
+                            <div style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; text-align: center;">
+                                <h4>Cough Syrup</h4>
+                                <p style="color: #7f8c8d; font-size: 0.9em;">Cold & Flu</p>
+                                <p style="font-weight: bold; color: #27ae60;">$3.50 per bottle</p>
+                                <button class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h3>My Recent Requests</h3>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Request Date</th>
+                                    <th>Medicine</th>
+                                    <th>Quantity</th>
+                                    <th>Status</th>
+                                    <th>Approved By</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2025-06-05</td>
+                                    <td>Paracetamol 500mg</td>
+                                    <td>10 tablets</td>
+                                    <td><span class="badge badge-warning">Pending</span></td>
+                                    <td>-</td>
+                                </tr>
+                                <tr>
+                                    <td>2025-06-03</td>
+                                    <td>Vitamin D3</td>
+                                    <td>30 tablets</td>
+                                    <td><span class="badge badge-success">Dispensed</span></td>
+                                    <td>Dr. Ahmed</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inventory Management -->
+        <div id="inventory" class="wireframe">
+            <div class="app-header">
+                <div class="logo">🏥 EMIMS</div>
+                <div class="user-info">
+                    <span>🔔</span>
+                    <div class="user-avatar">PM</div>
+                    <span>Pharmacy Manager</span>
+                </div>
+            </div>
+            <div class="app-body">
+                <div class="sidebar">
+                    <div class="sidebar-item">
+                        <i>📊</i> Dashboard
+                    </div>
+                    <div class="sidebar-item">
+                        <i>💊</i> Medicine Catalog
+                    </div>
+                    <div class="sidebar-item active">
+                        <i>📦</i> Inventory
+                    </div>
+                    <div class="sidebar-item">
+                        <i>🏪</i> Suppliers
+                    </div>
+                    <div class="sidebar-item">
+                        <i>📋</i> Purchase Orders
+                    </div>
+                    <div class="sidebar-item">
+                        <i>⚠️</i> Alerts
+                    </div>
+                </div>
+                <div class="main-content">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                        <h2 style="color: #2c3e50;">Inventory Management</h2>
+                        <div>
+                            <button class="btn btn-success">Add Stock</button>
+                            <button class="btn btn-primary">Generate Report</button>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-grid">
+                        <div class="stat-card">
+                            <h3>Total Items</h3>
+                            <div class="value">450</div>
+                            <div class="change">In stock</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Low Stock</h3>
+                            <div class="value">7</div>
+                            <div class="change">⚠️ Reorder needed</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Expiring Soon</h3>
+                            <div class="value">12</div>
+                            <div class="change">Next 30 days</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Total Value</h3>
+                            <div class="value">$45,230</div>
+                            <div class="change">Current inventory</div>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h3>Inventory Status</h3>
+                            <div>
+                                <input type="text" placeholder="Search medicines..." style="padding: 8px; border: 1px solid #ddd; border-radius: 5px; margin-right: 10px;">
+                                <select style="padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+                                    <option>All Categories</option>
+                                    <option>Pain Relief</option>
+                                    <option>Antibiotics</option>
+                                    <option>Vitamins</option>
+                                </select>
+                            </div>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Medicine Name</th>
+                                    <th>Batch No.</th>
+                                    <th>Current Stock</th>
+                                    <th>Min Level</th>
+                                    <th>Expiry Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Paracetamol 500mg</td>
+                                    <td>PAR2024001</td>
+                                    <td>500 tablets</td>
+                                    <td>100</td>
+                                    <td>2025-12-31</td>
+                                    <td><span class="badge badge-success">In Stock</span></td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 5px 10px; font-size: 0.8em;">Edit</button>
+                                        <button class="btn btn-warning" style="padding: 5px 10px; font-size: 0.8em;">Adjust</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Amoxicillin 250mg</td>
+                                    <td>AMX2024002</td>
+                                    <td>25 tablets</td>
+                                    <td>50</td>
+                                    <td>2025-08-15</td>
+                                    <td><span class="badge badge-warning">Low Stock</span></td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 5px 10px; font-size: 0.8em;">Reorder</button>
+                                        <button class="btn btn-warning" style="padding: 5px 10px; font-size: 0.8em;">Adjust</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Vitamin C 1000mg</td>
+                                    <td>VTC2024003</td>
+                                    <td>200 tablets</td>
+                                    <td>75</td>
+                                    <td>2025-07-20</td>
+                                    <td><span class="badge badge-danger">Expiring Soon</span></td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 5px 10px; font-size: 0.8em;">Edit</button>
+                                        <button class="btn btn-danger" style="padding: 5px 10px; font-size: 0.8em;">Return</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reports & Analytics -->
+        <div id="reports" class="wireframe">
+            <div class="app-header">
+                <div class="logo">🏥 EMIMS</div>
+                <div class="user-info">
+                    <span>🔔</span>
+                    <div class="user-avatar">HM</div>
+                    <span>HR Manager</span>
+                </div>
+            </div>
+            <div class="app-body">
+                <div class="sidebar">
+                    <div class="sidebar-item">
+                        <i>📊</i> Dashboard
+                    </div>
+                    <div class="sidebar-item">
+                        <i>👥</i> Employees
+                    </div>
+                    <div class="sidebar-item active">
+                        <i>📈</i> Reports
+                    </div>
+                    <div class="sidebar-item">
+                        <i>💰</i> Cost Analysis
+                    </div>
+                    <div class="sidebar-item">
+                        <i>📋</i> Compliance
+                    </div>
+                    <div class="sidebar-item">
+                        <i>🎯</i> Analytics</i>
+                    </div>
+                </div>
+                <div class="main-content">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                        <h2 style="color: #2c3e50;">Reports & Analytics</h2>
+                        <div>
+                            <button class="btn btn-success">Export Report</button>
+                            <button class="btn btn-primary">Schedule Report</button>
+                        </div>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px;">
+                        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);">
+                            <h3 style="margin-bottom: 15px; color: #2c3e50;">Quick Reports</h3>
+                            <div style="display: flex; flex-direction: column; gap: 10px;">
+                                <button class="btn btn-primary" style="text-align: left;">📊 Monthly Consumption Report</button>
+                                <button class="btn btn-primary" style="text-align: left;">💰 Cost Analysis by Department</button>
+                                <button class="btn btn-primary" style="text-align: left;">👥 Employee Utilization Report</button>
+                                <button class="btn btn-primary" style="text-align: left;">📈 Inventory Turnover Report</button>
+                            </div>
+                        </div>
+                        <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);">
+                            <h3 style="margin-bottom: 15px; color: #2c3e50;">Custom Report Builder</h3>
+                            <div class="form-group">
+                                <label>Report Type</label>
+                                <select class="form-control">
+                                    <option>Consumption Analysis</option>
+                                    <option>Cost Analysis</option>
+                                    <option>Employee Usage</option>
+                                    <option>Inventory Status</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Date Range</label>
+                                <input type="date" class="form-control">
+                            </div>
+                            <button class="btn btn-success">Generate Report</button>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
+                        <div class="table-container">
+                            <div class="table-header">
+                                <h3>Monthly Medicine Consumption</h3>
+                                <span style="color: #7f8c8d;">Last 6 Months</span>
+                            </div>
+                            <div style="padding: 20px; height: 300px; background: #f8f9fa; display: flex; align-items: center; justify-content: center;">
+                                <div style="text-align: center; color: #7f8c8d;">
+                                    <div style="font-size: 3em; margin-bottom: 10px;">📊</div>
+                                    <p>Interactive Chart Placeholder</p>
+                                    <p style="font-size: 0.9em;">Line chart showing monthly consumption trends</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-container">
+                            <div class="table-header">
+                                <h3>Top Medicines</h3>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Medicine</th>
+                                        <th>Requests</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Paracetamol</td>
+                                        <td>45</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Vitamin C</td>
+                                        <td>38</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cough Syrup</td>
+                                        <td>32</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Aspirin</td>
+                                        <td>28</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Antacid</td>
+                                        <td>25</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medicine Requests -->
+        <div id="requests" class="wireframe">
+            <div class="app-header">
+                <div class="logo">🏥 EMIMS</div>
+                <div class="user-info">
+                    <span>🔔</span>
+                    <div class="user-avatar">DA</div>
+                    <span>Dr. Ahmed</span>
+                </div>
+            </div>
+            <div class="app-body">
+                <div class="sidebar">
+                    <div class="sidebar-item">
+                        <i>📊</i> Dashboard
+                    </div>
+                    <div class="sidebar-item active">
+                        <i>📋</i> Medicine Requests
+                    </div>
+                    <div class="sidebar-item">
+                        <i>✅</i> Approvals
+                    </div>
+                    <div class="sidebar-item">
+                        <i>🚫</i> Rejections
+                    </div>
+                    <div class="sidebar-item">
+                        <i>📦</i> Dispensing
+                    </div>
+                    <div class="sidebar-item">
+                        <i>📈</i> Analytics</i>
+                    </div>
+                </div>
+                <div class="main-content">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                        <h2 style="color: #2c3e50;">Medicine Requests Management</h2>
+                        <div>
+                            <button class="btn btn-success">Bulk Approve</button>
+                            <button class="btn btn-warning">Export List</button>
+                        </div>
+                    </div>
+                    
+                    <div class="dashboard-grid">
+                        <div class="stat-card">
+                            <h3>Pending Requests</h3>
+                            <div class="value">18</div>
+                            <div class="change">Awaiting approval</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Approved Today</h3>
+                            <div class="value">12</div>
+                            <div class="change">Ready for dispensing</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Dispensed Today</h3>
+                            <div class="value">25</div>
+                            <div class="change">Completed requests</div>
+                        </div>
+                        <div class="stat-card">
+                            <h3>Emergency Requests</h3>
+                            <div class="value">3</div>
+                            <div class="change">⚠️ High priority</div>
+                        </div>
+                    </div>
+
+                    <div style="background: white; border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);">
+                        <h3 style="margin-bottom: 15px; color: #2c3e50;">Request Filters</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select class="form-control">
+                                    <option>All Requests</option>
+                                    <option>Pending</option>
+                                    <option>Approved</option>
+                                    <option>Dispensed</option>
+                                    <option>Rejected</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Department</label>
+                                <select class="form-control">
+                                    <option>All Departments</option>
+                                    <option>IT</option>
+                                    <option>HR</option>
+                                    <option>Finance</option>
+                                    <option>Operations</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Date Range</label>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label>Priority</label>
+                                <select class="form-control">
+                                    <option>All Priority</option>
+                                    <option>Emergency</option>
+                                    <option>High</option>
+                                    <option>Normal</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h3>Medicine Requests Queue</h3>
+                            <div>
+                                <input type="text" placeholder="Search requests..." style="padding: 8px; border: 1px solid #ddd; border-radius: 5px; margin-right: 10px;">
+                                <button class="btn btn-primary">🔍 Search</button>
+                            </div>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox"></th>
+                                    <th>Request ID</th>
+                                    <th>Employee</th>
+                                    <th>Medicine</th>
+                                    <th>Quantity</th>
+                                    <th>Priority</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>REQ001</td>
+                                    <td>
+                                        <div>
+                                            <strong>John Smith</strong><br>
+                                            <small style="color: #7f8c8d;">EMP001 - IT Dept</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <strong>Paracetamol 500mg</strong><br>
+                                            <small style="color: #7f8c8d;">Pain Relief</small>
+                                        </div>
+                                    </td>
+                                    <td>10 tablets</td>
+                                    <td><span class="badge badge-danger">Emergency</span></td>
+                                    <td><span class="badge badge-warning">Pending</span></td>
+                                    <td>2025-06-07</td>
+                                    <td>
+                                        <button class="btn btn-success" style="padding: 5px 10px; font-size: 0.8em;">✓ Approve</button>
+                                        <button class="btn btn-danger" style="padding: 5px 10px; font-size: 0.8em;">✗ Reject</button>
+                                        <button class="btn btn-primary" style="padding: 5px 10px; font-size: 0.8em;">👁️ View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>REQ002</td>
+                                    <td>
+                                        <div>
+                                            <strong>Sarah Johnson</strong><br>
+                                            <small style="color: #7f8c8d;">EMP002 - HR Dept</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <strong>Vitamin D3</strong><br>
+                                            <small style="color: #7f8c8d;">Supplements</small>
+                                        </div>
+                                    </td>
+                                    <td>30 tablets</td>
+                                    <td><span class="badge badge-info">Normal</span></td>
+                                    <td><span class="badge badge-success">Approved</span></td>
+                                    <td>2025-06-06</td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 5px 10px; font-size: 0.8em;">📦 Dispense</button>
+                                        <button class="btn btn-primary" style="padding: 5px 10px; font-size: 0.8em;">👁️ View</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>REQ003</td>
+                                    <td>
+                                        <div>
+                                            <strong>Michael Brown</strong><br>
+                                            <small style="color: #7f8c8d;">EMP003 - Finance</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <strong>Cough Syrup</strong><br>
+                                            <small style="color: #7f8c8d;">Cold & Flu</small>
+                                        </div>
+                                    </td>
+                                    <td>1 bottle</td>
+                                    <td><span class="badge badge-warning">High</span></td>
+                                    <td><span class="badge badge-info">Dispensed</span></td>
+                                    <td>2025-06-05</td>
+                                    <td>
+                                        <button class="btn btn-primary" style="padding: 5px 10px; font-size: 0.8em;">👁️ View</button>
+                                        <button class="btn btn-warning" style="padding: 5px 10px; font-size: 0.8em;">📋 Receipt</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>REQ004</td>
+                                    <td>
+                                        <div>
+                                            <strong>Emily Davis</strong><br>
+                                            <small style="color: #7f8c8d;">EMP004 - Operations</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <strong>Antibiotic Cream</strong><br>
+                                            <small style="color: #7f8c8d;">Topical</small>
+                                        </div>
+                                    </td>
+                                    <td>1 tube</td>
+                                    <td><span class="badge badge-info">Normal</span></td>
+                                    <td><span class="badge badge-warning">Pending</span></td>
+                                    <td>2025-06-07</td>
+                                    <td>
+                                        <button class="btn btn-success" style="padding: 5px 10px; font-size: 0.8em;">✓ Approve</button>
+                                        <button class="btn btn-danger" style="padding: 5px 10px; font-size: 0.8em;">✗ Reject</button>
+                                        <button class="btn btn-primary" style="padding: 5px 10px; font-size: 0.8em;">👁️ View</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showWireframe(wireframeId) {
+            // Hide all wireframes
+            document.querySelectorAll('.wireframe').forEach(frame => {
+                frame.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.wireframe-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected wireframe
+            document.getElementById(wireframeId).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to table rows
+            document.querySelectorAll('tr').forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = '#f8f9fa';
+                });
+                
+                row.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '';
+                });
+            });
+
+            // Add click handlers for buttons (demo purposes)
+            document.querySelectorAll('.btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    // Don't interfere with wireframe switching
+                    if (!this.classList.contains('wireframe-btn')) {
+                        e.preventDefault();
+                        
+                        // Add a subtle click effect
+                        this.style.transform = 'scale(0.95)';
+                        setTimeout(() => {
+                            this.style.transform = '';
+                        }, 150);
+                        
+                        // Show demo alert for some buttons
+                        if (this.textContent.includes('Approve')) {
+                            alert('Demo: Request approved successfully!');
+                        } else if (this.textContent.includes('Reject')) {
+                            alert('Demo: Request rejected.');
+                        } else if (this.textContent.includes('Add to Cart')) {
+                            alert('Demo: Medicine added to cart!');
+                        }
+                    }
+                });
+            });
+
+            // Add search functionality demo
+            document.querySelectorAll('input[type="text"]').forEach(input => {
+                if (input.placeholder.toLowerCase().includes('search')) {
+                    input.addEventListener('keyup', function(e) {
+                        if (e.key === 'Enter') {
+                            alert('Demo: Search functionality would filter results for: "' + this.value + '"');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
